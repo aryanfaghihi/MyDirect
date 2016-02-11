@@ -11,10 +11,13 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res, next){
       res.render('index');
+    })
+    .get('/:id', function(req, res) {
+      res.render('redirect')
     });
 
 var db = mongodb.MongoClient;
-
+var data_collection;
 //mongodb API url
 var url = 'mongodb://aryan:2016Aryan@ds061405.mongolab.com:61405/my-direct';
 
@@ -24,6 +27,9 @@ db.connect(url, function (err, db){
   }
   else {
     console.info('MongoDB connected!');
+    data_collection = db.collection("data");
+    app.locals.data_collection = data_collection;
+
   }
 });
 

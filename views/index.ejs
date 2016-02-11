@@ -33,17 +33,13 @@
         </div>
         </br>
         <div class="input-group">
-            <span class="input-group-addon" id="current_webpage">{{current_webpage}}</span>
-            <input ng-model="short_url" class="form-control" type="text" placeholder="Your awesome url will come here" aria-describedby="current_webpage">
+            <input ng-model="short_url" id="short_url" class="form-control" type="text" placeholder="{{current_webpage}}" onclick="this.select()">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button">Customise</button>
             </span>
         </div>
     </form>
     <br/>
-    <a href="#" class="btn btn-info">
-        <span class="glyphicon glyphicon-copy"></span> Copy URL
-    </a>
 
 </div>
 </body>

@@ -5,13 +5,18 @@ app.controller('IndexAppController', ['$scope', '$http', '$window', function ($s
 
   // POST request to get the shortened URL
   $scope.submit_url = function (url) {
+
     var url_json = {
-      url: url
+      url: url,
+      id: create_id()
     };
     $http.post('/api/new/', url_json).then(function (res) {
-      console.log(res);
+      console.log(res.data);
+      $scope.short_url = $scope.current_webpage + res.data;
     })
+  };
+
+  function create_id() {
+    return Math.random().toString(36).substr(2, 4);
   }
-
 }]);
-

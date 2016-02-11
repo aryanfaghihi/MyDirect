@@ -9,10 +9,13 @@
     <script src="/javascripts/angular/angular.js"></script>
     <script src="/javascripts/angular/angular-route.js"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Custom scripts and stylesheets -->
     <script src="/javascripts/index.js"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+
+
+
 </head>
 
 <body ng-controller="IndexAppController">
@@ -25,7 +28,7 @@
         <div class="input-group">
             <input ng-model="input_url" class="form-control" type="text" placeholder="Place your looooong url here">
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">Go!</button>
+                <button class="btn btn-primary" type="button" ng-click="submit_url(input_url)">Go!</button>
             </span>
         </div>
         </br>
@@ -37,6 +40,10 @@
             </span>
         </div>
     </form>
+    <br/>
+    <a href="#" class="btn btn-info">
+        <span class="glyphicon glyphicon-copy"></span> Copy URL
+    </a>
 
 </div>
 </body>

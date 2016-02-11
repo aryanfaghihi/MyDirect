@@ -7,3 +7,9 @@ html, body {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
+.main_wrapper {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}

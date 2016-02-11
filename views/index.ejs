@@ -16,6 +16,28 @@
 </head>
 
 <body ng-controller="IndexAppController">
+<div class="main_wrapper">
+    <h1>
+        MyDirect: the ultimate url shortener
+    </h1>
+    <br/>
+    <form class="main_form">
+        <div class="input-group">
+            <input ng-model="input_url" class="form-control" type="text" placeholder="Place your looooong url here">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">Go!</button>
+            </span>
+        </div>
+        </br>
+        <div class="input-group">
+            <span class="input-group-addon" id="current_webpage">{{current_webpage}}</span>
+            <input ng-model="short_url" class="form-control" type="text" placeholder="Your awesome url will come here" aria-describedby="current_webpage">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Customise</button>
+            </span>
+        </div>
+    </form>
 
+</div>
 </body>
 </html>

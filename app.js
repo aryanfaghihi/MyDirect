@@ -1,6 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
-    mongodb = require('mongodb');
+    mongodb = require('mongodb'),
+    http = require('http');
 
 // The express app
 var app = express();
@@ -23,11 +24,10 @@ db.connect(url, function (err, db){
   else {
     console.log('MongoDB connected!');
 
-    app.use(express.static(__dirname + '/public'))
-        .use(express.static(__dirname + '/bower_components'));
+    app.use(express.static(__dirname + '/public'));
 
     //listen to server and set up socket.io handshake
-    var http = require('http');
+
     var server = http.createServer(app);
     var port = process.env.PORT || 3000;
 

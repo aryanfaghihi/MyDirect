@@ -5,10 +5,27 @@ app.controller('RedirectAppController', ['$scope', '$http', '$window', function 
   var data_obj = {
     id: id
   };
+  /*
   $http.post('/api/redirect', data_obj).then(function(res) {
     console.log(res);
     var org_url = res.data;
     window.location.href = org_url;
   });
+  */
+
+  var db_obj = {
+    geo: {},
+    device: {}
+  };
+
+  $http.get('http://ip-api.com/json/').then(function(res){
+    if (res.data.status !== 'fail') {
+      db_obj.geo = res.data;
+      console.log(db_obj);
+    }
+    else {
+      db_obj.geo = null;
+    }
+  })
 
 }]);

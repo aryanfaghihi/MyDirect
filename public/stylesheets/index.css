@@ -13,3 +13,11 @@ html, body {
     margin: 0 auto;
     padding: 20px;
 }
+
+.row:nth-of-type(even) {
+    background: #EFEFEF;
+}
+
+#created_wrapper .row {
+    padding: 15px
+}

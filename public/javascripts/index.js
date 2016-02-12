@@ -45,7 +45,9 @@ app.controller('IndexAppController', ['$scope', '$http', '$window', function ($s
       $scope.short_url_success = true;
 
       // Update the stored urls in local storage
-
+      var last = $scope.stored_urls.length - 1;
+      $scope.stored_urls[last].id = new_id;
+      update_stored_urls();
     })
   };
 
@@ -66,15 +68,25 @@ app.controller('IndexAppController', ['$scope', '$http', '$window', function ($s
   function add_urls_to_local_storage (obj) {
     if (typeof(Storage) !== "undefined") {
       $scope.stored_urls.push(obj);
-      localStorage.setObj("urls", $scope.stored_urls);
+      update_stored_urls();
     }
+  }
+
+  function update_stored_urls () {
+    localStorage.setObj("urls", $scope.stored_urls);
   }
 
   // Get the previously saved urls from local storage.
   if (typeof(Storage) !== "undefined") {
     $scope.stored_urls = [];
     if (localStorage.getObj("urls")) {
-      $scope.stored_urls = localStorage.getObj("urls");
+      var temp_stored_urls = localStorage.getObj("urls");
+      for (var i = 0; i < temp_stored_urls.length; i++) {
+        if (temp_stored_urls[i]["$$hashKey"]) {
+          delete temp_stored_urls[i]["$$hashKey"];
+        }
+      }
+      $scope.stored_urls = temp_stored_urls;
     }
     console.log($scope.stored_urls);
   }
@@ -83,3 +95,9 @@ app.controller('IndexAppController', ['$scope', '$http', '$window', function ($s
     return Math.random().toString(36).substr(2, 4);
   }
 }]);
+
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});

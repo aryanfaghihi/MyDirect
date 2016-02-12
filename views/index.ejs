@@ -62,9 +62,17 @@
     </section>
 
     <section id="created_wrapper">
-        <div ng-repeat="entry in stored_urls">
-            <span>{{entry.original_url}}</span>
-            <span>{{current_webpage + entry.id}}</span>
+        <h3>Your stored URLs</h3>
+        <div ng-repeat="entry in stored_urls | reverse" class="row">
+            <div class="col-xs-1"><h4>#{{$index+1}}</h4></div>
+            <div class="col-xs-11">
+                <a ng-href="{{current_webpage + entry.id}}">
+                    <div><h4>{{current_webpage + entry.id}}</h4></div>
+                </a>
+                <a ng-href="{{entry.original_url}}">
+                    <div>{{entry.original_url}}</div>
+                </a>
+            </div>
         </div>
     </section>
 

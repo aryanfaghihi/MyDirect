@@ -35,21 +35,23 @@ router.post('/update', function(req, res) {
   );
 });
 
-router.post('/redirect', function(req, res) {
+router.post('/redirect/:id', function(req, res) {
   var data_collection = req.app.locals.data_collection;
-  console.log(req.body.id);
-  data_collection.find(
-      {id: req.body.id}).toArray(function(err, items) {
-    if (err) {
-      console.err(err);
-    }
-    else {
-      console.log(items[0]);
-      if (items[0]) {
-        res.send(items[0].original_url)
+  console.log(req.body);
+  console.log(req.params.id);
+
+  data_collection.findAndModify(
+      { id: req.params.id },     // query
+      [],               // represents a sort order if multiple matches
+      { $push: {"data": req.body} },   // update statement
+      { new: true },    // options - new to return the modified document
+      function(err,doc) {
+        // doc.value includes the object that has been modified.
+        console.log(doc.value);
+        res.send(doc.value.original_url);
       }
-    }
-  });
+  );
+
 });
 
 module.exports = router;

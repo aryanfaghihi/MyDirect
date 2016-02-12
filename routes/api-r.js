@@ -5,7 +5,7 @@ var router = express.Router();
 router.post('/new', function(req, res) {
   var data_collection = req.app.locals.data_collection;
   data_collection.insertOne(
-      {"original_url": req.body.url, "id": req.body.id},
+      {"original_url": req.body.original_url, "id": req.body.id},
       function(err, result) {
         if (!err) {
           res.send(req.body.id);
@@ -45,7 +45,9 @@ router.post('/redirect', function(req, res) {
     }
     else {
       console.log(items[0]);
-      res.send(items[0].original_url);
+      if (items[0]) {
+        res.send(items[0].original_url)
+      }
     }
   });
 });

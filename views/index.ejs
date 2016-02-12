@@ -19,34 +19,55 @@
 </head>
 
 <body ng-controller="IndexAppController">
-<div class="main_wrapper">
-    <h1>
-        MyDirect: the ultimate url shortener
-    </h1>
-    <br/>
-    <form class="main_form">
-        <div class="input-group">
-            <input ng-model="input_url" class="form-control" type="text" placeholder="Place your looooong url here">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" ng-click="submit_url(input_url)">Go!</button>
-            </span>
-        </div>
-        </br>
-        <div class="input-group" ng-show="short_url_is_visible">
-            <input ng-model="short_url" id="short_url" class="form-control" type="text" placeholder="{{current_webpage}}" ng-change="short_url_change()">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="update_url(input_url)">Customise</button>
-            </span>
-        </div>
+<section class="main_wrapper">
+
+    <section id="create_wrapper">
+        <h1>
+            MyDirect: the ultimate url shortener
+        </h1>
         <br/>
-        <div class="alert alert-success" role="alert" ng-show="short_url_success"><b>Done!</b> Your customised URL is ready.</div>
-    </form>
-    <br/>
+        <form class="main_form">
+            <div class="input-group">
+                <input ng-model="input_url" class="form-control" type="text" placeholder="Place your looooong url here">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="submit_url(input_url)">Shorten my url!</button>
+                </span>
+            </div>
+            </br>
+            <div class="input-group" ng-show="short_url_is_visible">
+                <input ng-model="short_url"
+                       id="short_url"
+                       class="form-control"
+                       type="text" placeholder="{{current_webpage}}"
+                       ng-change="short_url_change()"
+                >
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="update_url(input_url)">Customise</button>
+                </span>
+                <span class="input-group-btn">
+                    <a ng-click="copy_to_clipboard()" class="btn btn-info">
+                        <span class="glyphicon glyphicon-copy"></span> Copy
+                    </a>
+                </span>
+            </div>
+            <br/>
+            <div
+                    class="alert alert-success"
+                    role="alert"
+                    ng-show="short_url_success">
+                <b>Done!</b> Your customised URL is ready.
+            </div>
+        </form>
+        <br/>
+    </section>
 
-    <a ng-click="copy_to_clipboard()" class="btn btn-info">
-        <span class="glyphicon glyphicon-copy"></span> Copy
-    </a>
+    <section id="created_wrapper">
+        <div ng-repeat="entry in stored_urls">
+            <span>{{entry.original_url}}</span>
+            <span>{{current_webpage + entry.id}}</span>
+        </div>
+    </section>
 
-</div>
+</section>
 </body>
 </html>

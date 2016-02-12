@@ -2,7 +2,7 @@
 <html ng-app="project">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <head>
-    <title>Glass</title>
+    <title>MyDirect</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- JQuery + CSS + AngularJS-->
     <script src="/javascripts/jquery/jquery.js"></script>
@@ -32,14 +32,20 @@
             </span>
         </div>
         </br>
-        <div class="input-group">
-            <input ng-model="short_url" id="short_url" class="form-control" type="text" placeholder="{{current_webpage}}" onclick="this.select()">
+        <div class="input-group" ng-show="short_url_is_visible">
+            <input ng-model="short_url" id="short_url" class="form-control" type="text" placeholder="{{current_webpage}}" ng-change="short_url_change()">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Customise</button>
+                <button class="btn btn-default" type="button" ng-click="update_url(input_url)">Customise</button>
             </span>
         </div>
+        <br/>
+        <div class="alert alert-success" role="alert" ng-show="short_url_success"><b>Done!</b> Your customised URL is ready.</div>
     </form>
     <br/>
+
+    <a ng-click="copy_to_clipboard()" class="btn btn-info">
+        <span class="glyphicon glyphicon-copy"></span> Copy
+    </a>
 
 </div>
 </body>

@@ -18,6 +18,23 @@ router.post('/new', function(req, res) {
   );
 });
 
+router.post('/update', function(req, res) {
+  var data_collection = req.app.locals.data_collection;
+  data_collection.updateOne(
+      {"original_url": req.body.url},
+      { "$set": {"id": req.body.id}},
+      function(err, result) {
+        if (!err) {
+          res.send(req.body.id);
+        }
+        else {
+          console.error('Adding the new URL to the database was unsuccessful');
+          res.status(500);
+        }
+      }
+  );
+});
+
 router.post('/redirect', function(req, res) {
   var data_collection = req.app.locals.data_collection;
   console.log(req.body.id);

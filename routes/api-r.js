@@ -37,6 +37,7 @@ router.post('/update', function(req, res) {
 
 router.post('/redirect/:id', function(req, res) {
   var data_collection = req.app.locals.data_collection;
+  console.log(req);
   console.log(req.body);
   console.log(req.params.id);
 

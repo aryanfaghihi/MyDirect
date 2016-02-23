@@ -52,7 +52,20 @@ router.post('/redirect/:id', function(req, res) {
         res.send(doc.value.original_url);
       }
   );
+});
 
+router.get('/manage/:id', function(req, res) {
+  var data_collection = req.app.locals.data_collection;
+
+  data_collection.find({id: req.params.id}).toArray(function(err, data) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+    else {
+      res.send(data[0]);
+    }
+  })
 });
 
 module.exports = router;

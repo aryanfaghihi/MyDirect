@@ -9,13 +9,25 @@ var app = express();
 app.use(bodyParser.json({limit: '50mb'}));
 app.set('view engine', 'ejs');
 
+// Page handlers
 app.get('/', function(req, res, next){
       res.render('index');
     })
     .get('/:id', function(req, res) {
       res.render('redirect')
+    })
+    .get('/manage/:id', function(req, res) {
+      res.render('manage')
     });
 
+// Routes
+app
+    .use(express.static(__dirname + '/public'))
+    .use('/api', api);
+
+
+
+// Connect to MongoDB.
 var db = mongodb.MongoClient;
 var data_collection;
 //mongodb API url
@@ -34,14 +46,8 @@ db.connect(url, function (err, db){
 });
 
 
-// Routes
-app
-    .use(express.static(__dirname + '/public'))
-    .use('/api', api);
-
 
 //listen to server and set up socket.io handshake
-
 var server = http.createServer(app);
 var port = process.env.PORT || 3000;
 

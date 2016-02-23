@@ -25,6 +25,10 @@ app.controller('RedirectAppController', ['$scope', '$http', '$window', function 
 
   });
 
+  /*
+   * Get users' device related data and save to db_obj.device object.
+   */
+
   function get_device_data () {
 
     var unknown = '-';
@@ -178,7 +182,7 @@ app.controller('RedirectAppController', ['$scope', '$http', '$window', function 
       screen: screenSize,
       browser: browser,
       browserVersion: version,
-      browserMajorVersion: majorVersion.toString(),
+      browserMajorVersion: majorVersion,
       mobile: mobile,
       os: os,
       osVersion: osVersion,
